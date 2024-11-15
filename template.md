@@ -1,48 +1,41 @@
-          Title:
-          Owner:
+```
+Title: 
+Owner: 
 Collaborator(s):
-     Created on:
-         Status: Draft / Open / Accepted / Rejected / Abandoned
-   Finalised on:
+Created on: 
+Status: Draft | Approved | Rejected | Abandoned
+Finalised on: 
+```
 
-# Overview
+## Overview
 
 If someone only reads this far, what do you want them to know?
 
-# Goals and Non-Goals
+## What is the current state?
 
-What problems are you trying to solve? What problems are you not trying to solve?
+Provide a brief description of the current world.
 
-# Background & Motivation
 
-What is the current state of the world? Why is this change being proposed?
+## Why should we change?
 
-Define any key terms or internal names here.
+What is wrong with the current approach?
 
-# Design
 
-What exactly are you doing? Include architecture and process diagrams.
+## How should we address this?
 
-This is typically the longest part of the RFC.
+Describe your proposed solution, and how it addresses the problems.
 
-# Timeline
 
-What is the proposed timeline for the implementation?
+## What alternatives are we discarding?
 
-# Team(s) affected
+List any alternatives that could be considered, along with the reasons why they are not suitable to take forward.
 
-Does this proposal directly affect, or is it likely to have a material impact upon, one or more other teams? List the teams it will affect and some detail about how it will affect them. Describe how you will mitigate the impact on them.
 
-# Dependencies
+## Who will be affected?
 
-What existing internal and external systems does this one depend on? How will it use them?
+Think about who will be affected. Does this only affect internal team members (eg developers), or will this affect our users? How will we manage the impact on that group?
 
-# Alternatives Considered/Prior Art
 
-What other approaches did you consider? What existing solutions are close but not quite right? How will this project replace or integrate with the alternatives?
+## What are the key risks to manage or mitigate?
 
-# Risks
-
-What known risks exist? What factors may complicate your project?
-
-Include: security, complexity, compatibility, latency, service immaturity, lack of team expertise, etc.
+Highlight the key risks that need to be considered when implementing the proposal, and how we can mitigate those.
