@@ -35,6 +35,10 @@ List any alternatives that could be considered, along with the reasons why they 
 
 Think about who will be affected. Does this only affect internal team members (eg developers), or will this affect our users? How will we manage the impact on that group?
 
+## Who will benefit?
+
+A little summary of why we should change focused on the benefits to different stakeholders (could be developers, fund teams, onboarding or someone else)
+
 
 ## What are the key risks to manage or mitigate?
 
