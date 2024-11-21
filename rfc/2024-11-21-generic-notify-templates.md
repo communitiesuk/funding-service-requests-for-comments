@@ -1,3 +1,12 @@
+```
+Title: Use generic templates in notify
+Owner: @srh-sloan 
+Collaborator(s): @samuelhwilliams @MarcUsher @sfount
+Created on: 15/11/2024
+Status: Approved
+Finalised on: 21/11/2024
+```
+
 # Overview
 The funding service currently allows funds to customise the templates used to send emails from the 'Apply' part of the process. This customisation option has lead to complicated configuration in our notification micro service, but funds have not widely used this customisation option - most of our emails are already identical. The possibility of customisation means that a developer is needed when we onboard a new fund to setup the new templates.
 
