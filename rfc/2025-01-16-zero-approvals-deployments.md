@@ -1,4 +1,4 @@
-    Title: Start using no-manual-intervention continuous deployment
+    Title: Move towards no-manual-intervention continuous deployment
     Owner: Samuel Williams
     Collaborator(s): The Platform Team
     Created on: 07/01/2025
