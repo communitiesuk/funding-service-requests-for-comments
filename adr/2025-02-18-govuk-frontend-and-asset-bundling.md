@@ -14,7 +14,7 @@ A few options are presented below to deal with our frontend JS/CSS needs.
 
 This option has been used by a number of the Funding Service frontends, as there is no transpilation of javascript/ SCSS nescessary this is the simplest from a production build point of view and introduces no dependencies.
 
-This option would not let us customise the GOV.UK Design System by exending the SCSS variables (i.e to change the width of the page while keeping all of the other styles consistent) instead requiring manually overriding the CSS styles. We would also need to re-run the exract and copy routine any time we changed the apps styles.
+This option would not let us customise the GOV.UK Design System by extending the SCSS variables (i.e to change the width of the page while keeping all of the other styles consistent) instead requiring manually overriding the CSS styles. We would also need to re-run the extract and copy routine any time we changed the apps styles.
 
 ### 2: Use eg DartSass to compile only CSS; reuse GOV.UK Frontend JS files directly
 
