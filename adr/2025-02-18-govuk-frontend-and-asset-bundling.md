@@ -12,9 +12,9 @@ A few options are presented below to deal with our frontend JS/CSS needs.
 
 ### 1: Download GOV.UK Frontend zip, using the pre-compiled static files and assets
 
-This option has been used by a number of the Funding Service frontends, as there is no transpilation of javascript/ SCSS nescessary this is the simplest from a production build point of view and introduces no dependencies.
+This option has been used by a number of the Funding Service frontends, as there is no transpilation of javascript/ SCSS necessary this is the simplest from a production build point of view and introduces no dependencies.
 
-This option would not let us customise the GOV.UK Design System by extending the SCSS variables (i.e to change the width of the page while keeping all of the other styles consistent) instead requiring manually overriding the CSS styles. We would also need to re-run the extract and copy routine any time we changed the apps styles.
+This option would not let us customise the GOV.UK Design System by extending the SCSS variables (i.e to change the width of the page while keeping all of the other styles consistent) instead requiring manually overriding the CSS styles. We would also need to re-run the extract and copy routine any time we changed the apps' styles.
 
 ### 2: Use eg DartSass to compile only CSS; reuse GOV.UK Frontend JS files directly
 
@@ -24,7 +24,7 @@ This option builds on the previous option but would introduce a bundling/ asset 
 
 Using the Node packages ecosystem would allow us to install a modern version of dart sass and directly create a dependency on the design system npm package (`govuk-frontend`).
 
-This direct dependency can then be kept up to date by our version management process (currentl `renovate`) and prompt us to upgrade when we need to.
+This direct dependency can then be kept up to date by our version management process (currently `renovate`) and prompt us to upgrade when we need to.
 
 Building from the SCSS and JavaScript allows us to safely extend the design system while keeping up to date with changes, and should reduce the amount of custom styles and code we need to write.
 
@@ -36,18 +36,18 @@ Building from the SCSS and JavaScript allows us to safely extend the design syst
 #### 3.a: Use an existing library `flask-vite`
 
 We originally investigated using an existing library called `flask-vite`. This allowed us to get started very quickly but is designed around Single Page Applications (SPAs) which ended up having some drawbacks:
-- as the output of an SPA is a single HTML/ JS target vite would serve development assets (even styles) through one JS file which was loaded and would then inject styles into the template, this caused a noticable Flash of Unstyled Content during any page load and sets a precedent of the app not being performant
+- as the output of an SPA is a single HTML/ JS target vite would serve development assets (even styles) through one JS file which was loaded and would then inject styles into the template, this caused a noticeable Flash of Unstyled Content during any page load and sets a precedent of the app not being performant
 - additional styles/ code would have to be imported into the entry files and then all served at once, ideally we would be able to process files separately and either include them or not include them on any given page
 
 #### 3.b: Configure vite ourselves
 
-By adding our own `package.json` and creating a dependency on `vite` ourselves we take more control of the bundling and configuraiton. This allows us to: 
+By adding our own `package.json` and creating a dependency on `vite` ourselves we take more control of the bundling and configuration. This allows us to: 
 - serve CSS and JS directly allowing the dev server to cache assets and the page to load appropriately
 - have any number of assets which can be split up as required
 - support different transpilation/ file types
 - retain the good developer experience of the `vite` dev server
 
-Importantly this option also allows our version management process (curreny `renovate`) to suggest security and major upgrades to the build dependencies and `govuk-frontend`
+Importantly this option also allows our version management process (currently `renovate`) to suggest security and major upgrades to the asset build dependencies and GOV.UK Frontend.
 
 ## Decision
 
