@@ -20,7 +20,7 @@ We currently use [AWS AppRunner](https://aws.amazon.com/apprunner/) to deploy ou
 
 The proposal is not to change and that we will keep the current AWS AppRunner setup until we hit a technical constraint which makes it unviable. 
 
-[ECS Fargage](https://aws.amazon.com/fargate/) offers a range of advanced features not available in AppRunner such as:
+[ECS Fargate](https://aws.amazon.com/fargate/) offers a range of advanced features not available in AppRunner such as:
 * Sidecars
 * Ability to run ad-hoc tasks
 * Ability to make an SSH connection to the container
