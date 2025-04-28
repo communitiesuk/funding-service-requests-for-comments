@@ -3,8 +3,8 @@ Title: Use AppRunner
 Owner: Gideon Goldberg
 Collaborator(s): Platform Team
 Created on: 2025-04-25
-Status: Draft 
-Finalised on: 
+Status: Approved 
+Finalised on: 2025-04-28
 ```
 
 ## Overview
