@@ -32,7 +32,7 @@ The proposal is not to change and that we will keep the current AWS AppRunner se
 
 We have added an ECS cluster and associated script purely to run ad-hoc tasks such as database migrations. 
 
-We should continue to monitor if AppRunner continues to meet our needs for the main application container.
+We should continue to monitor if AppRunner meets our needs for the main application container.
 
 ## What alternatives are we discarding?
 
