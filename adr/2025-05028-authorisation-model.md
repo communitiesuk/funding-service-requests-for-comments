@@ -28,17 +28,7 @@ roles and permissions within the platform.
 
 ## What is the current state?
 
-The current user management for applicants is based on a single-user model, which while allowing a user to complete an 
-application, does not have any strong concept of a user’s organisation. This limits us from implementing a range of 
-functionality such as:
-
-* Allowing users to view or collaborate on data submissions from the same organisation, including at different stages
-such as between pre and post-award
-* Limiting submissions per organisation (for example, enforcing only one submission per Local Authority or organisation)
-* From a reporting side, allowing us to track which organisations from an expected list have submitted a monitoring
-return
-* Having a stronger concept of organisations also supports data standards, as organisations can be strongly linked to 
-known identifiers, enabling easier place-based reporting
+The current user management for applicants is based on a single-user model, which while allowing a user to complete an application, does not have any strong concept of a user’s organisation.
 
 On the Assessment side we are constrained by needing to request from IT a new Security Group and Roles for each grant 
 that we onboard. This means currently putting a fund into assessment will currently always require developer input to 
@@ -49,10 +39,16 @@ several months since the initial request.
 Delta already has a strong concept of organisations and roles (such as a Section 151 Officer within an organisation), 
 as well as the ability to assign organisations to take part in specific collections.
 
+Key concepts:
+* Access Groups - Every dataset and grant has an associated access group, and users can only see and interact with 
+datasets and grants if they are in that access group.
+* Roles - Fixed set of roles that determine the types of actions a user can take on the Delta system. Some roles can be
+self-selected by the user.
+* Organisations - A user is a member of one or more Organisations. Organisations themselves can be added and edited by administrators. Each organisation has a list of associated domains. Access to organisations is primarily determined by whether a user's email domain is on that list of domains.
+
 The Delta model is also very self-serve and built on a level of trust:
 * Users self-select their roles in a profile management type view
-    * Admins can assign themselves and other users to Access Groups and Roles; standard users can only assign themselves 
-    to certain roles.
+    * Global administrators can assign themselves and other users to Access Groups and Roles; standard users can only assign themselves to certain roles
 * Delta knows you are part of a certain Organisation based on email domain
 * Users and Organisation owners do not get any email notifications when they or other users select/deselect roles. The 
 only email notifications around roles/permissions are for S151 Officers
@@ -69,9 +65,17 @@ See a more comprehensive overview of [Delta's roles and permissions model on Con
 
 ## Why should we change?
 
-As established in the overview, the current User Management and Access Control functionality in the existing services
-limits us from implementing a number of features which are known user needs. Being able to implement these would be a
-significant value-add from the new platform and should allow for further iteration and refinement going forward as the
+As established in the overview, the current User Management and Access Control functionality in the existing services limits us from implementing a number of features which are known user needs, such as:
+
+* Allowing users to view or collaborate on data submissions from the same organisation, including at different stages
+such as between pre and post-award
+* Limiting submissions per organisation (for example, enforcing only one submission per Local Authority or organisation)
+* From a reporting side, allowing us to track which organisations from an expected list have submitted a monitoring
+return
+* Having a stronger concept of organisations also supports data standards, as organisations can be strongly linked to 
+known identifiers, enabling easier place-based reporting
+
+Being able to implement these would be a significant value-add from the new platform and should allow for further iteration and refinement going forward as the
 platform and the needs of its users develop. We don't want to build ourselves into a corner where the technological
 constraints lead to a hard no on implementing new features and functionality.
 
@@ -97,8 +101,7 @@ and `grant_id` columns, allows us to have very granular permissions at a full pl
 
 ![Access Control Model](/images/userrole-model.png)
 
-In the example model above, Roles are a set list controlled by an enum which can easily be extended but keeps roles to
-a known quantity.
+In the example model above, Roles are a set list controlled by an enum which can easily be extended but keeps roles to a known quantity. Having a separate table for Roles was also considered, but initially while our set of Roles are relatively few, a separate table felt slightly over-engineered.  
 
 You then have the ability to define roles and permissions by using the nullable columns:
 
