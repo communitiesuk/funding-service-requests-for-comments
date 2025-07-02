@@ -14,7 +14,7 @@ The Funding Service has decided to take on the responsibility for form building 
 
 ## What is the current state?
 
-The expressions engine is a novel implementation for the new funding-service app, so there is limited strictly-current state to compare against. However, there are adjacent parts of MHCLG's and Funding Service's technical estate that achieve similar things to the 'expressions engine' we intend to build:
+The expressions engine is a novel implementation for the new funding-service app, so there is limited strictly-current state to compare against. However, there are adjacent parts of MHCLG's and Funding Service's technical estate that achieve similar things to the 'expressions engine' we have built:
 
 ### Delta
 
@@ -41,7 +41,19 @@ The implemented, currently living mainly in [app/common/expressions/__init__.py]
 
 Funding Service developers work mainly in Python, so writing something Python-esque should be very approachable. Form designers should not be expected to know a complex language and should be able to use a simple user interface to design the vast majority of what they need.
 
-For writing the expressions, we've therefore decided to use a subset of the standard Python language, evaluated using the `simpleeval` library. Using raw `eval` is an option but comes with a vast array of security concerns, and given that we will be processing user input, it is vital that we have a high level of trust in the security posture we're taking when evaluating the expressions. `eval` is off the table. `simpleeval` works by reading the expression and converting it to a Python Abstract Syntax Tree (AST), and then running that through an allowlisted evaluator that only allows a very small subset of the Python language. It also evaluates the expression with a limited context (set of variables), meaning that the data the expression has access to can be defined very clearly and precisely. We can build the context for an expression based on the user interacting with the system, so that they can have a personalised experience. Some examples of context are: their current submission, their organisation, the grant they're reporting for, the projects they've had approved for funding, and more.
+For writing the expressions, we've therefore decided to use a subset of the standard Python language, evaluated using the `simpleeval` library. Using raw `eval` is an option but comes with a vast array of security concerns, and given that we will be processing user input, it is vital that we have a high level of trust in the security posture we're taking when evaluating the expressions. `eval` is off the table. `simpleeval` works by reading the expression and converting it to a Python Abstract Syntax Tree (AST), and then running that through an allowlisted evaluator that only allows a very small subset of the Python language. It also evaluates the expression with a limited context (set of variables), meaning that the data the expression has access to can be defined very clearly and precisely.
+
+### Context
+The context for an expression is the sum of data available for it to query. We can build the context for an expression based on the user interacting with the system, so that they can have a personalised experience. Some examples of context are:
+
+- all of the answers in their current submission
+- their organisation
+- the grant they're reporting on
+- the projects their organisation is working on under the approved funding
+
+This can be as limited or as broad as we need it to be, with some small consideration for memory constraints and performance. Having the ability to inject very flexible context for expressions will allow us to use it across the entire platform. It takes advantage of having all of the funding data in one place, to provide a good user experience for both form designers, grant recipients, and grant teams.
+
+### What are expressions?
 
 An expression might look like any of these:
 
