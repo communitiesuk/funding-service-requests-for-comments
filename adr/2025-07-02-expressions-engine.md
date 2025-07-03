@@ -83,7 +83,7 @@ Conditions apply to questions and determine whether or not the user should see t
 
 ### Personalisation
 
-In order to reduce duplication and increase reliability, we anticipate the need for some questions to include informationa dynamically, based on the context of the user providing the data. For example, we might want a question to read `What role do you have in {{ organisation name }}?`. This needs to be different for each user, so that someone from Bolton Council might see "What role do you have in Bolton Council?".
+In order to reduce duplication and increase reliability, we anticipate the need for some questions to include information dynamically, based on the context of the user providing the data. For example, we might want a question to read `What role do you have in {{ organisation name }}?`. This needs to be different for each user, so that someone from Bolton Council might see "What role do you have in Bolton Council?".
 
 Therefore we need a way to inject personalised information into things like question text, hint text, section names, validation messages, and more.
 
