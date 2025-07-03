@@ -18,7 +18,7 @@ The expressions engine is a novel implementation for the new funding-service app
 
 ### Delta
 
-Delta's form builder and runner is built on [Orbeon Forms](https://www.orbeon.com/). It is extremely powerful and extensible, letting you write essentially any validation logic you want using [XPath expressions](https://doc.orbeon.com/xforms/xpath). MHCLG and the Funding Service does not many people knowledgeable in this DSL, and has dedicated Orbeon Form Engineers to help abstract the complexity of this from the majority of people using Delta for forms. This can be a bottleneck for the service, leading to stress and undue pressure both on the Orbeon Engineers, the service, and the department.
+Delta's form builder and runner is built on [Orbeon Forms](https://www.orbeon.com/). It is extremely powerful and extensible, letting you write essentially any validation logic you want using [XPath expressions](https://doc.orbeon.com/xforms/xpath). MHCLG and the Funding Service does not have many people knowledgeable in this DSL, and has dedicated Orbeon Form Engineers to help abstract the complexity of this from the majority of people using Delta for forms. This can be a bottleneck for the service, leading to stress and undue pressure both on the Orbeon Engineers, the service, and the department.
 
 This is extremely flexible and allows almost any validation expression imaginable to be represented, but at the cost of needing a high level of skill and knowledge to do it quickly, successfully, and reliably.
 
