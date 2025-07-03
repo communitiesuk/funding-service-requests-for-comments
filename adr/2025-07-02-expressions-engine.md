@@ -37,7 +37,7 @@ The existing options do not meet our current or anticipated future needs with th
 The implemented, currently living mainly in [app/common/expressions/__init__.py](https://github.com/communitiesuk/funding-service/blob/main/app/common/expressions/__init__.py), aimed to address the following ideas:
 
 - Flexible and able to evaluate almost any imaginable condition
-- Simple to use and understand, for both form designers and developers.
+- Simple to use and understand, for both form designers and developers
 
 Funding Service developers work mainly in Python, so writing something Python-esque should be very approachable. Form designers should not be expected to know a complex language and should be able to use a simple user interface to design the vast majority of what they need.
 
