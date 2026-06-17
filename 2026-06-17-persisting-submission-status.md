@@ -1,9 +1,9 @@
 ```
 Title: Persisting submission status
 Owner: Will May
-Collaborator(s): Sarah Sloan, Sam Williams
+Collaborator(s):
 Created on: 2026-06-17
-Status: Final
+Status: Draft
 Finalised on:
 ```
 
