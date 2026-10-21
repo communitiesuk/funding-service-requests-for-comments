@@ -71,31 +71,40 @@ infrastructure like an ELK/Elastic Stack or Honeycomb.
 Live with our current logging implementations and accept that observability and traceability will be a bit fuzzy and
 require a lot of manual, time-consuming, detailed work.
 
-* Good, because it means we don't have to do any work now
-* Good, because Sentry already correlates application logs for us
-* Bad, because Sentry doesn't expose our infrastructure logs (eg cloudfront, ALB, etc)
-* Bad, because when we want to investigate problems or errors it will take time and effort to narrow down the context
-* Bad, because we don't record user ID on logs
-* Bad, because we don't have a simple way to associate requests with upcoming background worker jobs
+Good because:
+* it means we don't have to do any work now
+* Sentry already correlates application logs for us
+
+Bad because:
+* Sentry doesn't expose our infrastructure logs (eg cloudfront, ALB, etc)
+* when we want to investigate problems or errors it will take time and effort to narrow down the context
+* we don't record user ID on logs
+* we don't have a simple way to associate requests with upcoming background worker jobs
 
 ### Evolve the existing stdlib `logging` setup in place
 
 Keep the current module and add the request and user IDs to it with the smallest possible change.
 
-* Good, because it is the smallest change and uses tools the team already knows
-* Good, because it adds no dependencies
-* Bad, because it is shaped around web requests and has no natural place for background jobs or CLI commands
-* Bad, because it keeps some legacy choices we would rather drop, such as logging full URLs including query strings
+Good because:
+* it is the smallest change and uses tools the team already knows
+* it adds no dependencies
+
+Bad because:
+* it is shaped around web requests and has no natural place for background jobs or CLI commands
+* it keeps some legacy choices we would rather drop, such as logging full URLs including query strings
 
 ### Replace stdlib logging with structlog and add an explicit bind API
 
 Adopt structlog as the logging library, giving application code a dedicated API for attaching context to log lines.
 
-* Good, because it has the nicest API for attaching context, and a very readable local development output
-* Good, because it is widely used and has native async loggers that future workers could use
-* Bad, because our existing log calls would stay on the stdlib unless we migrate them all, leaving two styles in use
-* Bad, because Sentry's logging integration works through the stdlib, so native structlog calls need extra wiring
-* Bad, because it adds a dependency and a new mental model for a modest gain over the stdlib
+Good because:
+* it has the nicest API for attaching context, and a very readable local development output
+* it is widely used and has native async loggers that future workers could use
+
+Bad because:
+* our existing log calls would stay on the stdlib unless we migrate them all, leaving two styles in use
+* Sentry's logging integration works through the stdlib, so native structlog calls need extra wiring
+* it adds a dependency and a new mental model for a modest gain over the stdlib
 
 ### A 'unit of work' correlation context
 
@@ -103,21 +112,27 @@ Treat a request, a background job, a CLI command and a startup task as the same 
 carries a set of correlation fields. Every log line and Sentry event inside it picks those fields up automatically, and
 the fields can be handed to another process, for example into a job's payload.
 
-* Good, because requests, jobs and commands are handled consistently, now and when workers arrive
-* Good, because context crosses process boundaries using Sentry's trace propagation, which we already have
-* Good, because it adds no dependencies and existing log calls keep working unchanged
-* Bad, because it is more code for us to own than evolving the current module
-* Bad, because trace and span IDs come from Sentry's SDK, so we are tied to how that SDK evolves
+Good because:
+* requests, jobs and commands are handled consistently, now and when workers arrive
+* context crosses process boundaries using Sentry's trace propagation, which we already have
+* it adds no dependencies and existing log calls keep working unchanged
+
+Bad because:
+* it is more code for us to own than evolving the current module
+* trace and span IDs come from Sentry's SDK, so we are tied to how that SDK evolves
 
 ### Use OpenTelemetry for context propagation and instrumentation
 
 Adopt the OpenTelemetry SDK and its Flask, database and logging instrumentation, bridged into Sentry.
 
-* Good, because it is a vendor-neutral standard that would survive a move away from Sentry
-* Good, because propagation between processes and automatic instrumentation already exist
-* Bad, because Sentry is our only consumer today, so everything would be translated into Sentry anyway
-* Bad, because it does not give us our own request ID, user ID or the AWS IDs; we would still build that part
-* Bad, because it adds several dependencies, and OpenTelemetry's Python logging support is still maturing
+Good because:
+* it is a vendor-neutral standard that would survive a move away from Sentry
+* propagation between processes and automatic instrumentation already exist
+
+Bad because:
+* Sentry is our only consumer today, so everything would be translated into Sentry anyway
+* it does not give us our own request ID, user ID or the AWS IDs; we would still build that part
+* it adds several dependencies, and OpenTelemetry's Python logging support is still maturing
 
 This option is deferred rather than rejected: the chosen approach keeps all Sentry-specific propagation in one place,
 so switching to OpenTelemetry later is a contained change.
