@@ -61,7 +61,8 @@ In practice this means:
   available on demand.
 * Optionally: the request ID is shown on the 500 error page so users can quote it to the service desk.
 
-We'll continue to use Sentry and/or CloudWatch Log Insights to search and review logs, rather than
+We'll continue to use Sentry and/or CloudWatch Log Insights to search and review logs, rather than a new piece of
+infrastructure like an ELK/Elastic Stack or Honeycomb.
 
 ## Pros and Cons of the Options
 
